@@ -1,0 +1,90 @@
+<!Doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Contacts</title>
+<link type="text/css" rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+</head>
+<body>
+    <div class="app" ng-app="myapp">
+        <header>My Contacts</header>
+		<div class="main" ng-controller="formController">
+		  <div class="row">
+		    <div class="left-section col-md-4">
+			    <button class="new" ng-click="addItem()">+New</button></br></br></br>
+				<table>
+				    <tr ng-repeat="item in items.data">
+					    <td class="fullName">{{item.firstName}} {{item.lastName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td><button class="edit" ng-click="editItem($index)">Edit</button></td>
+						<td><button class="delete" ng-click="deleteItem($index)">Delete</button></td>
+					</tr>
+				</table>
+			</div>
+			<div class="right-section col-md-8">
+			    <div class="head row">
+				    ADD OR EDIT CONTACT(FULL NAME)
+				</div>
+				<hr />
+				<div class="row">
+				
+			    <form novalidate ng-submit="saveItem()" ng-model="myform" name="myform" class="add-form">
+				<div class="col-md-7">
+				    <div class="form-group  form-inline hidden">
+					    <input class="form-control" type="text" ng-model="id" name="id" id="firstName" /></br>
+					</div>
+				    <div class="form-group  form-inline">
+					    <label for="firstName">First Name</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input class="form-control" type="text" ng-model="firstName" name="firstName" id="firstName" placeholder="Enter First Name" /></br>
+					</div>
+					<div class="form-group  form-inline">
+					    <label for="lastName">Last Name</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <input class="form-control" type="text" ng-model="lastName" name="lastName" id="lastName" placeholder="Enter Last Name" /></br>
+					</div>
+					<div class="form-group  form-inline">
+					    <label for="birthDay">Birth Day</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <input class="form-control" type="text" ng-model="birthDay" name="birthDay" id="birthDay" placeholder="DD/MM/YYYY" /></br>
+					</div>
+					<div class="form-group  form-inline">
+					    <label for="company">Company</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <input class="form-control" type="text" ng-model="company" name="company" id="company" placeholder="Enter Company" /></br>
+					</div>
+					<div class="form-group  form-inline">
+					    <label for="email">Email Address</label>&nbsp;&nbsp;
+                        <input class="form-control" type="email" ng-model="email" name="email" id="email" placeholder="example@domain.com" /></br>
+					</div>
+					<div class="form-group  form-inline">
+					    <label for="mobileNum">Mobile Number</label>&nbsp;
+ 						<input class="form-control" type="text" ng-model="mobileNum" name="mobileNum" id="mobileNum" placeholder="000-000-0000" /></br>
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="form-group image-form">
+					    <img class="image" src="images/nopreview.jpg" ng-src="{{imgUrl}}" width="140px" height="170px" /></br>
+						<label for="files"><span class="img-label">Upload Image</span></label>
+					    <input type="file" ng-model-instant onchange="angular.element(this).scope().imageUpload(this)" id="files" class="img-file"  />
+					</div>
+				</div>
+				</form>
+				</div>
+				<hr />
+				<div class="float-right">
+				   <div class="col-md-6">
+				    <input type="button" class="save" value="Save" ng-click="saveItem($event)" form="myform" />
+				   </div>
+				   <div class="col-md-6">
+				    <button class="cancel" ng-click="cancelItem()">Cancel</button>
+				   </div>
+				</div>
+				</div>
+			</div>
+		  </div>
+		  <footer>Footer</footer>
+		</div>
+</body>
+</html>
